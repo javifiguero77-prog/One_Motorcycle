@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ONE MOTORCYCLES | Administración</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="/" class="brand">
+        <img
+            src="{{ url_for('static', filename='img/onemoto.png') }}"
+            alt="ONE MOTORCYCLES"
+            class="site-logo"
+        >
+    </a>
+
+    <nav>
+        <span>ADMINISTRACIÓN</span>
+    </nav>
+
+    <a href="/admin/logout" class="top-cta">
+        CERRAR SESIÓN
+    </a>
+
+</header>
+
+
+<main>
+
+    <section class="catalog-section">
+
+        <div class="section-top">
+
+            <div>
+                <p class="kicker">PANEL ADMINISTRATIVO</p>
+
+                <h2>
+                    Bienvenido,
+                    <span>{{ session.get("admin_usuario") }}</span>
+                </h2>
+            </div>
+
+            <p>
+                Desde este panel puedes administrar
+                la información de ONE MOTORCYCLES.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div>
+                <span class="number">01</span>
+
+                <h3>Motocicletas</h3>
+
+                <p>
+                    Registrar, editar, eliminar y cambiar
+                    el estado de las motocicletas.
+                </p>
+
+                <a href="/admin/motocicletas"
+                   class="btn red">
+                    ADMINISTRAR MOTOS →
+                </a>
+            </div>
+
+
+            <div>
+                <span class="number">02</span>
+
+                <h3>Clientes</h3>
+
+                <p>
+                    Consultar los clientes registrados
+                    en el sistema.
+                </p>
+
+                <a href="/admin/clientes"
+                   class="btn outline">
+                    VER CLIENTES →
+                </a>
+            </div>
+
+
+            <div>
+                <span class="number">03</span>
+
+                <h3>Vendedores</h3>
+
+                <p>
+                    Administrar los vendedores
+                    registrados.
+                </p>
+
+                <a href="/admin/vendedores"
+                   class="btn outline">
+                    VER VENDEDORES →
+                </a>
+            </div>
+
+
+            <div>
+                <span class="number">04</span>
+
+                <h3>Ventas</h3>
+
+                <p>
+                    Consultar y registrar las ventas
+                    realizadas.
+                </p>
+
+                <a href="/admin/ventas"
+                   class="btn outline">
+                    VER VENTAS →
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="brand">
+        <img
+            src="{{ url_for('static', filename='img/onemoto.png') }}"
+            alt="ONE MOTORCYCLES"
+            class="site-logo"
+        >
+    </div>
+
+    <p>
+        Panel administrativo · ONE MOTORCYCLES
+    </p>
+
+</footer>
+
+</body>
+</html>

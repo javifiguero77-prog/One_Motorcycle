@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ONE MOTORCYCLES | Administración</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<section class="access">
+
+    <div>
+        <p class="kicker">ONE MOTORCYCLES</p>
+
+        <h2>
+            Área de<br>
+            <span>administración.</span>
+        </h2>
+
+        <p>
+            Acceso exclusivo para personal autorizado.
+        </p>
+    </div>
+
+    <div class="access-card">
+
+        <div class="tabs">
+            <button class="tab active">
+                ADMINISTRADOR
+            </button>
+        </div>
+
+        <form method="POST" action="/admin/login" class="form active">
+
+            <label>
+                USUARIO
+                <input
+                    type="text"
+                    name="usuario"
+                    placeholder="Usuario"
+                    required
+                >
+            </label>
+
+            <label>
+                CONTRASEÑA
+                <input
+                    type="password"
+                    name="contrasena"
+                    placeholder="Contraseña"
+                    required
+                >
+            </label>
+
+            <button type="submit" class="btn red full">
+                INICIAR SESIÓN
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+</body>
+</html>

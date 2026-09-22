@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONE MOTORCYCLES - Catálogo de motocicletas">
+    <title>ONE MOTORCYCLES | Catálogo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <a href="#inicio" class="brand">
+        <img src="{{ url_for('static', filename='img/onemoto.png') }}" 
+     alt="ONE MOTORCYCLES" 
+     class="site-logo">
+    </a>
+
+    <nav>
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#acceso">Acceso</a>
+    </nav>
+
+    <a href="#catalogo" class="top-cta">VER MOTOS <span>↗</span></a>
+</header>
+
+<main>
+    <!-- HERO: distribución inspirada en la referencia, pero con identidad propia -->
+    <section id="inicio" class="hero">
+        <div class="hero-copy">
+            <div class="red-line"></div>
+            <p class="kicker">ONE MOTORCYCLES · CATÁLOGO</p>
+            <h1>La vida<br>con una <em>motocicleta.</em></h1>
+            <p class="hero-text">
+                Explora las motocicletas disponibles, consulta sus detalles
+                y encuentra la máquina que buscas.
+            </p>
+            <div class="hero-buttons">
+                <a href="#catalogo" class="btn red">EXPLORAR MOTOCICLETAS <span>→</span></a>
+                <a href="#nosotros" class="btn outline">CONOCER ONE</a>
+            </div>
+        </div>
+
+        <div class="hero-bike">
+            <div class="hero-ring"></div>
+            <div class="bike-shadow"></div>
+            <div class="bike-art" aria-label="Motocicleta destacada">
+                <div class="wheel wheel-a"></div>
+                <div class="wheel wheel-b"></div>
+                <div class="bike-frame"></div>
+                <div class="bike-tank"></div>
+                <div class="bike-seat"></div>
+                <div class="bike-front"></div>
+                <div class="bike-handle"></div>
+                <div class="bike-light"></div>
+            </div>
+
+            <div class="featured-tag">
+                <span>DISPONIBLE</span>
+                <strong>YAMAHA FZ 2.0</strong>
+                <small>150 CC · ROJO Y NEGRO</small>
+            </div>
+        </div>
+
+        <div class="hero-meta">
+            <span>ONE MOTORCYCLES</span>
+            <span>DESLIZA PARA EXPLORAR ↓</span>
+        </div>
+    </section>
+
+    <!-- CATALOGO -->
+    <section id="catalogo" class="catalog-section">
+        <div class="section-top">
+            <div>
+                <p class="kicker">CATÁLOGO</p>
+                <h2>Motocicletas <span>disponibles.</span></h2>
+            </div>
+            <p>
+                Selecciona una marca para filtrar el catálogo.
+                Cada motocicleta permite consultar su información completa.
+            </p>
+        </div>
+
+        <div class="catalog-layout">
+            <aside class="brand-filter" id="marcas">
+                <p>FILTRAR POR MARCA</p>
+                <button class="filter active" data-brand="all">TODAS</button>
+                <button class="filter" data-brand="Yamaha">Yamaha</button>
+                <button class="filter" data-brand="Honda">Honda</button>
+                <button class="filter" data-brand="Suzuki">Suzuki</button>
+                <button class="filter" data-brand="Kawasaki">Kawasaki</button>
+            </aside>
+
+            <div class="catalog-content">
+                <div class="catalog-status">
+                    <span id="filter-label">Marca: Todas</span>
+                    <span>Selecciona una tarjeta para ver sus detalles.</span>
+                </div>
+
+                <div class="moto-grid">
+                    {% for moto in motos %}
+<article class="moto-card" data-brand="{{ moto.marca }}">
+    <div class="moto-visual">
+        <span class="availability">{{ moto.estado|upper }}</span>
+
+
+        {% if moto.imagen1 %}
+    <img
+        src="{{ url_for('static', filename=moto.imagen1) }}"
+        alt="{{ moto.marca }} {{ moto.modelo }}"
+        class="moto-image"
+    >
+{% else %}
+    <div class="card-bike">
+        <div class="cb-wheel one"></div>
+        <div class="cb-wheel two"></div>
+        <div class="cb-body"></div>
+        <div class="cb-seat"></div>
+        <div class="cb-bar"></div>
+    </div>
+{% endif %}
+        <span class="model-mark">{{ moto.modelo }}</span>
+    </div>
+
+    <div class="moto-info">
+        <p>{{ moto.marca|upper }} · {{ moto.anio }}</p>
+
+        <h3>{{ moto.marca }} {{ moto.modelo }}</h3>
+
+        <strong class="price">${{ "%.2f"|format(moto.precio) }}</strong>
+
+        <button class="detail-btn" data-detail="{{ moto.id_motocicleta }}">
+    VER DETALLES <span>→</span>
+</button>
+    </div>
+</article>
+{% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETALLE -->
+    <section class="feature-section">
+        <div class="feature-image">
+            <div class="feature-bike-art">
+                <div class="fb-wheel a"></div>
+                <div class="fb-wheel b"></div>
+                <div class="fb-tank"></div>
+                <div class="fb-seat"></div>
+                <div class="fb-frame"></div>
+            </div>
+        </div>
+        <div class="feature-copy">
+            <p class="kicker">MODELO DESTACADO</p>
+            <h2>Yamaha<br><span>FZ 2.0</span></h2>
+            <div class="feature-price">$2,200.00</div>
+            <div class="spec-list">
+                <div><small>AÑO</small><b>2025</b></div>
+                <div><small>COLOR</small><b>Rojo y Negro</b></div>
+                <div><small>CILINDRAJE</small><b>150 cc</b></div>
+                <div><small>ESTADO</small><b>Disponible</b></div>
+            </div>
+            <button class="btn red" data-detail="1">
+    VER INFORMACIÓN COMPLETA <span>→</span>
+</button>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="about">
+        <div class="about-title">
+            <p class="kicker">ONE MOTORCYCLES</p>
+            <h2>Todo lo que<br>necesitas para<br><span>elegir tu moto.</span></h2>
+        </div>
+
+        <div class="about-grid">
+            <div>
+                <span class="number">01</span>
+                <h3>Catálogo</h3>
+                <p>Consulta las motocicletas disponibles y filtra por Yamaha, Honda, Suzuki o Kawasaki.</p>
+            </div>
+            <div>
+                <span class="number">02</span>
+                <h3>Detalles</h3>
+                <p>Revisa fotografías, año, color, cilindraje, estado, precio, descripción y especificaciones.</p>
+            </div>
+            <div>
+                <span class="number">03</span>
+                <h3>Cuenta de cliente</h3>
+                <p>Crea una cuenta con nombre completo, teléfono, correo, usuario y contraseña.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCESO -->
+    <section id="acceso" class="access">
+        {% if session.get('id_usuario') %}
+    <div class="logged-user">
+        SESIÓN INICIADA COMO:
+        <strong>{{ session.get('usuario') }}</strong>
+
+        <a href="/logout">CERRAR SESIÓN</a>
+    </div>
+{% endif %}
+        <div>
+            <p class="kicker">ÁREA DE CLIENTE</p>
+            <h2>¿Ya tienes<br><span>una cuenta?</span></h2>
+            <p>Accede al sistema para consultar el catálogo como cliente.</p>
+        </div>
+
+        <div class="access-card">
+            <div class="tabs">
+                <button class="tab active" data-tab="login">INICIAR SESIÓN</button>
+                <button class="tab" data-tab="register">CREAR CUENTA</button>
+            </div>
+
+            <form id="login" class="form active" method="POST" action="/login">
+
+    <label>
+        USUARIO
+        <input
+            type="text"
+            name="usuario"
+            placeholder="Ingresa tu usuario"
+            required
+        >
+    </label>
+
+    <label>
+        CONTRASEÑA
+        <input
+            type="password"
+            name="contrasena"
+            placeholder="Ingresa tu contraseña"
+            required
+        >
+    </label>
+
+    <button type="submit" class="btn red full">
+        INICIAR SESIÓN
+    </button>
+
+</form>
+
+            <form id="register" class="form" method="POST" action="/registro">
+
+    <label>
+        NOMBRE COMPLETO
+        <input 
+            type="text" 
+            name="nombre_completo"
+            placeholder="Nombre completo"
+            required
+        >
+    </label>
+
+    <label>
+        TELÉFONO
+        <input 
+            type="tel" 
+            name="telefono"
+            placeholder="Teléfono"
+            required
+        >
+    </label>
+
+    <label>
+        CORREO
+        <input 
+            type="email" 
+            name="correo"
+            placeholder="Correo"
+            required
+        >
+    </label>
+
+    <label>
+        USUARIO
+        <input 
+            type="text" 
+            name="usuario"
+            placeholder="Usuario"
+            required
+        >
+    </label>
+
+    <label>
+        CONTRASEÑA
+        <input 
+            type="password" 
+            name="contrasena"
+            placeholder="Contraseña"
+            required
+        >
+    </label>
+
+    <label>
+        CONFIRMAR CONTRASEÑA
+        <input 
+            type="password" 
+            name="confirmar_contrasena"
+            placeholder="Confirmar contraseña"
+            required
+        >
+    </label>
+
+    <button type="submit" class="btn red full">
+        CREAR CUENTA
+    </button>
+
+</form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="brand">
+        <img src="{{ url_for('static', filename='img/onemoto.png') }}" 
+     alt="ONE MOTORCYCLES" 
+     class="site-logo">
+    </div>
+    <p>Catálogo de motocicletas · ONE MOTORCYCLES</p>
+    <a href="#inicio">VOLVER ARRIBA ↑</a>
+</footer>
+
+<!-- Modal de detalle -->
+<div class="modal" id="detail-modal">
+    <div class="modal-box">
+        <button class="close" id="close-modal">×</button>
+
+        <div class="modal-visual">
+    <img 
+        id="modal-image" 
+        class="modal-moto-image" 
+        src="" 
+        alt="Motocicleta"
+    >
+</div>
+
+        <div class="modal-info">
+            <p class="kicker">MOTOCICLETA</p>
+
+            <h2 id="modal-title"></h2>
+
+            <div class="modal-price" id="modal-price"></div>
+
+            <div class="modal-specs">
+                <div>
+                    <span>Año</span>
+                    <b id="modal-anio"></b>
+                </div>
+
+                <div>
+                    <span>Color</span>
+                    <b id="modal-color"></b>
+                </div>
+
+                <div>
+                    <span>Cilindraje</span>
+                    <b id="modal-cilindraje"></b>
+                </div>
+
+                <div>
+                    <span>Estado</span>
+                    <b id="modal-estado"></b>
+                </div>
+            </div>
+
+            <h4>DESCRIPCIÓN</h4>
+            <p id="modal-descripcion"></p>
+
+            <h4>ESPECIFICACIONES</h4>
+            <p id="modal-especificaciones"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const motos = {{ motos_json|safe }};
+</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
